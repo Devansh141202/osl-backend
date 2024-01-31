@@ -42,6 +42,8 @@ const Image = require("./Models/imageModel")
 
 const pythonScriptPath = "./hello.py";
 require("dotenv").config({ path: "./config/.env" });
+const path = require('path');
+const dirPath = path.join(__dirname, 'uploads/');
 
 app.use(express.json());
 var cors = require("cors");
@@ -51,7 +53,7 @@ app.use(cors({ origin: true, credentials: true }));
 
 app.use(express.urlencoded({ extended: true }));
 const upload = multer({
-  dest: "uploads/",
+  dest: dirPath,
   limits: {
     fileSize: 30 * 1000000,
   },
