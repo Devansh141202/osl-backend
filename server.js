@@ -21,7 +21,7 @@ app.post("/api/photos", uploads.single("files"), (req, res) => {
 const { OpenAI } = require("openai");
 
 const openai = new OpenAI({
-    apiKey: "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"
+    apiKey: "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"
 });
 
 app.post('/chatGPT', async (req, res) => {
@@ -107,6 +107,9 @@ app.post("/api/photos", upload.single("files"), (req, res) => {
     console.log(error);
   }
 });
+app.get("/", (req, res) =>{
+  res.send("Server Deployed!!")
+})
 
 app.listen(process.env.PORT, () => {
   console.log(`Server Listening on ${process.env.PORT}`);
