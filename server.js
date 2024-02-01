@@ -21,7 +21,7 @@ app.post("/api/photos", uploads.single("files"), (req, res) => {
 const { OpenAI } = require("openai");
 
 const openai = new OpenAI({
-  apiKey: "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",
+  apiKey: process.env.API_KEY,
 });
 
 app.post("/chatGPT", async (req, res) => {
