@@ -16,17 +16,17 @@ exports.addCompany = asyncErrors(async (req, res) => {
 });
 exports.getHours = asyncErrors(async (req, res) => {
   const { state, district, month } = req.query;
-  let pipelines = [
+  let mainPipe = [
     {
       $unwind: "$workDetails",
     },
   ];
   if (month) {
-      pipelines.push({
+      mainPipe.push({
       $match: { "workDetails.month": month },
     });
   }
-  pipelines.push(
+  mainPipe.push(
     {
       $group: {
         _id: "$companyName",
@@ -58,9 +58,9 @@ exports.getHours = asyncErrors(async (req, res) => {
         district
       );
     }
-    pipelines.push(pipeline);
+    mainPipe.push(pipeline);
   }
-  const data = await userModel.aggregate([pipelines]);
+  const data = await userModel.aggregate([mainPipe]);
   if (!data) {
     res.status(400).json({
       message: "No data found",
