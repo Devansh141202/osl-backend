@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const user = require("./routes/userRoutes");
+const task = require("./routes/taskRoutes");
 const connectDatabase = require("./config/db");
 var cors = require("cors");
 app.use(cors({ origin: true, credentials: true }));
@@ -11,6 +12,7 @@ const uploads = multer({
 app.use(express.json());
 
 app.use("/api/v1", user);
+app.use("/api/v1", task)
 require("dotenv").config({ path: "./config/.env" });
 
 app.use(express.urlencoded({ extended: true }));
