@@ -47,6 +47,9 @@ exports.userDetails = asyncErrors(async (req, res) => {
     success: true,
     message: "User created successfully!",
   });
+
+  responseHandler(res, SUCCESS_S_0001("WO"), data);
+
 });
 exports.login = async (req, res) => {
   const { email, password } = req.body;
